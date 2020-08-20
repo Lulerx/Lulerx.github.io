@@ -39,3 +39,11 @@ $ hexo deploy
 ```
 
 More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
+
+> 备份三部曲：
+>
+> git add .
+>
+> git commit -m "注释"
+>
+> git push origin [分支]
