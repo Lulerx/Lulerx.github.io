@@ -9,8 +9,6 @@ menu:
   Links: links  # 友链
   About: about  # 关于
   
- 
-language: zh-CN
 
 # Enable/Disable menu icons
 menu_icons:
@@ -35,7 +33,7 @@ site:
     height: 40
     url: ../images/logo.png
   title: Luler的博客 # 页面title
-  favicon: /favicon.png
+  favicon: /favicon.png     # 图标
   board: <p>欢迎交流与分享经验!</p> # 站点公告
   copyright: true # 底部版权信息
 
