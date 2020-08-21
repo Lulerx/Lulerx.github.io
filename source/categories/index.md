@@ -1,5 +1,5 @@
 ---
-title: 分类
-layout: categories
-comments: false
+layout: category
+index: true
+title: 所有分类
 ---

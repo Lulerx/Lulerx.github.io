@@ -1,8 +1,11 @@
 ---
+layout: page
 title: 关于
-description: 个人简介
-layout: about
-comments: false
-sidebar: custom
+meta:
+  header: []
+  footer: []
+sidebar: []
+valine:
+  placeholder: 有什么想对我说的呢？
 ---
 一个热爱生活的小码农
