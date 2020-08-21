@@ -112,9 +112,9 @@ lazyload:
 navbar:
   visiable: auto # always, auto
   logo: # choose [img] or [icon + title]
-    img: /images/base/touxiang.jpg
+    img: 
     icon:
-    title:
+    title: Luler's Blog
   menu:
     # The following can be written in `blog/source/_data/menu.yml`
     - name: 博客
@@ -150,7 +150,7 @@ cover:
     others: false # can be written in front-matter 'cover: true'
   background: https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg
   logo: #https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-Cover@3x.png
-  title: 'Luler的博客'       #主页标题
+  title: " Luler's Blog "       
   subtitle: '一个热爱生活的小痞子'
   search: search... # search bar placeholder
   features: 
