@@ -1,8 +1,8 @@
 ---
 typora-root-url: D:\Devsoft\hexo\source
-title: mysql笔记
-categories: 随笔    #分类
-tags: 基础          #标签
+title: mysql基础语法
+categories: [mysql,mysql基础]   #分类
+tags: [基础,mysql]         #标签
 toc: true  #是否启用内容索引
 ---
 
