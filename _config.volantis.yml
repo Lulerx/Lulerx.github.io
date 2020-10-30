@@ -437,7 +437,7 @@ tag_plugins:
 ############################### Tag Plugins ############################### > end
 
 
-############################### Site Footer ############################### > start
+############################### Site Footer 底部 ############################### > start
 site_footer:
   # layout of footer: [aplayer, social, license, info, copyright] [aplayer, social, hello, copyright]
   layout: [aplayer, social, hello, copyright]
@@ -472,7 +472,7 @@ site_footer:
   hello: '[本网站纯粹用于学习, 欢迎指点](/)'
 ############################### Site Footer ############################### > end
 
-############################### Plugins ############################### > start
+############################### Plugins 插件 ############################### > start
 plugins:
   ################ required plugins ################
   # jquery
