@@ -1,90 +1,49 @@
 <%
-var topMetas = theme.layout.on_page.meta.header || [];
-if (post.meta && (post.meta.header !== undefined && post.meta.header !== null)) {
-  if (post.meta.header.length) {
-    topMetas = post.meta.header;
-  } else {
-    topMetas = [];
-  }
+var topMetas = theme.article.body.top_meta || [];
+if (post.top_meta == false) {
+  topMetas = [];
 }
-var bottomMetas = theme.layout.on_page.meta.footer || [];
-if (post.meta && (post.meta.footer !== undefined && post.meta.footer !== null)) {
-  if (post.meta.footer.length) {
-    bottomMetas = post.meta.footer;
-  } else {
-    bottomMetas = [];
-  }
+var bottomMetas = theme.article.body.bottom_meta || [];
+if (post.bottom_meta == false) {
+  bottomMetas = [];
 }
 %>
 
-<% if (position == 'header') { %>
-  <div class='article-header'>
-    <% if (topMetas.length == 1 && topMetas.indexOf('centertitle') > -1) { %>
-      <% if (post.headimg) { %>
-        <% if (config.lazyload && config.lazyload.enable) { %>
-          <% if (config.lazyload.loadingImg) { %>
-            <div class='headimg lazyload placeholder' data-bg='<%- post.headimg %>'></div>
-          <% } else { %>
-            <div class='headimg lazyload' data-bg='<%- post.headimg %>'></div>
+<% if (position == 'top') { %>
+  <% if (post.headimg) { %>
+    <div class='headimg-div'>
+      <a class='headimg-a'>
+        <img class='headimg' src='<%- post.headimg %>'/>
+      </a>
+    </div>
+  <% } %>
+  <div class="article-meta" id="top">
+    <% if (post.music && post.music.enable != false) { %>
+      <%- partial('../_third-party/aplayer/layout', {post: post, where: 'meta'}) %>
+    <% } %>
+    <% if (post.thumbnail && post.thumbnail.length){ %>
+      <a title='<%- post.title %>' href='<%- url_for(post.link || post.path) %>'>
+        <img class='thumbnail' src='<%- post.thumbnail %>'>
+      </a>
+    <% } %>
+    <% if (post.title) { %>
+      <h1 class="title">
+        <%- post.title %>
+      </h1>
+      <div class='new-meta-box'>
+        <% (topMetas).forEach(function(meta) { %>
+          <% if (meta in theme.article.body.meta_library){ %>
+            <%- partial('../_meta/' + meta, {post: post}) %>
           <% } %>
-        <% } else { %>
-          <div class='headimg' data-bg='<%- post.headimg %>'></div>
-        <% } %>
-      <% } %>
-      <% if (post.title || page.title || config.title) { %>
-        <h1 class="title"><p class="p center h1"><%- post.title || post.seo_title %></p></h1><br>
-      <% } %>
-    <% } else { %>
-      <% if (post.headimg) { %>
-        <% if (config.lazyload && config.lazyload.enable) { %>
-          <% if (config.lazyload.loadingImg) { %>
-            <div class='headimg lazyload placeholder' data-bg='<%- post.headimg %>'></div>
-          <% } else { %>
-            <div class='headimg lazyload' data-bg='<%- post.headimg %>'></div>
-          <% } %>
-        <% } else { %>
-          <div class='headimg' data-bg='<%- post.headimg %>'></div>
-        <% } %>
-      <% } %>
-      <div class="article-meta" id="top">
-        <% if (post.music && post.music.enable != false) { %>
-          <%- partial('../_third-party/aplayer/layout', {post: post, where: 'meta'}) %>
-        <% } %>
-        <% if (post.thumbnail && post.thumbnail.length){ %>
-          <a title='<%- post.title %>' href='<%- url_for(post.link || post.path) %>'>
-            <% if (config.lazyload && config.lazyload.enable) { %>
-              <% if (config.lazyload.loadingImg) { %>
-                <img class='thumbnail lazyload placeholder' src='<%- post.thumbnail %>'>
-              <% } else { %>
-                <img class='thumbnail lazyload' src='<%- post.thumbnail %>'>
-              <% } %>
-            <% } else { %>
-              <img class='thumbnail' src='<%- post.thumbnail %>'>
-            <% } %>
-          </a>
-        <% } %>
-        <% if ((topMetas).indexOf('title') > -1) { %>
-          <h1 class="title">
-            <a href="<%- url_for(post.link || post.path) %>">
-              <%- (post.title || post.seo_title) ? (post.title || post.seo_title) : date(post.date, theme.meta.date.format) %>
-            </a>
-          </h1>
-        <% } %>
-        <div class='new-meta-box'>
-          <% (topMetas).forEach(function(meta) { %>
-            <% if ((meta != 'title') && (meta in theme.meta)){ %>
-              <%- partial('../_meta/' + meta, {post: post}) %>
-            <% } %>
-          <% }) %>
-        </div>
+        <% }) %>
       </div>
     <% } %>
   </div>
-<% } else if (position == 'footer') { %>
+<% } else if (position == 'bottom') { %>
   <div class='article-meta' id="bottom">
     <div class='new-meta-box'>
       <% (bottomMetas).forEach(function(meta){ %>
-        <% if((meta != 'title') && (meta in theme.meta)){ %>
+        <% if (meta in theme.article.body.meta_library) { %>
           <%- partial('../_meta/' + meta, {post: post}) %>
         <% } %>
       <% }) %>

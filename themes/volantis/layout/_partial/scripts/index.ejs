@@ -1,27 +1,45 @@
+<%- partial('loadfunction') %>
 <!-- required -->
 <%- js(theme.plugins.jquery) %>
+<%- partial('../../_third-party/fancybox/script') %>
 
-
-<!-- optional -->
+<!-- internal -->
 <%- partial('cover') %>
-<% if (theme.search && theme.search.enable) { %>
-  <%- partial('search') %>
+<% if (theme.rightmenu.enable == true) { %>
+  <%- partial('../rightmenu') %>
 <% } %>
 
-<% if (config.lazyload && config.lazyload.enable) { %>
+<% if (theme.plugins.issues.enable) { %>
+  <%- partial('../../_third-party/issues/script') %>
+<% } %>
+
+<% if (theme.plugins.lazyload && theme.plugins.lazyload.enable) { %>
   <%- partial('../../_third-party/lazyload/script') %>
 <% } %>
 
-<% if (theme.plugins.instant_page) { %>
-  <script async src="<%- theme.plugins.instant_page %>" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+<% if (theme.plugins.preload.enable && theme.plugins.preload.service) { %>
+  <% let preload = theme.plugins.preload; %>
+  <% if (preload.service == 'instant_page') { %>
+    <script async src="<%- preload.instant_page %>" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+  <% } else if (preload.service == 'flying_pages') { %>
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="<%- preload.flying_pages %>"></script>
+  <% } %>
 <% } %>
 
-<%- partial('../../_third-party/fancybox/script') %>
-<% if (theme.plugins.clipboard && (theme.style.body.highlight.copy_btn == true)) { %>
+
+<% if (theme.plugins.clipboard.enable && (theme.custom_css.body.highlight.copy_btn == true)) { %>
   <%- partial('../../_third-party/clipboard/script') %>
 <% } %>
 
-<% if (theme.plugins.scrollreveal && theme.plugins.scrollreveal.js) { %>
+<% if (theme.plugins.scrollreveal.enable && theme.plugins.scrollreveal.js) { %>
    <%- partial('../../_third-party/scrollreveal/script') %>
 <% } %>
 
@@ -33,10 +51,6 @@
   <%- partial('../../_third-party/comments/' + theme.comments.service + '/script') %>
 <% } %>
 
-<% if (theme.plugins.darkmodejs.enable) { %>
-  <%- partial('darkmode') %>
-<% } %>
-
 <% if (theme.analytics.busuanzi) { %>
   <script defer src="<%- theme.analytics.busuanzi %>" data-pjax></script>
 <% } %>
@@ -46,7 +60,7 @@
   <%- js(['js/app.js']) %>
 <% } %>
 
-<% if (theme.search && theme.search.enable) { %>
+<% if (theme.search.enable) { %>
   <% if (theme.search.js) { %>
     <%- js(theme.search.js) %>
   <% } else { %>
@@ -54,8 +68,13 @@
   <% } %>
 <% } %>
 
+<!-- optional -->
+<% if (theme.search && theme.search.enable) { %>
+  <%- partial('search') %>
+<% } %>
 
-<% if (theme.plugins.nodewaves && theme.plugins.nodewaves.js) { %>
+
+<% if (theme.plugins.nodewaves.enable) { %>
   <%- js({src: theme.plugins.nodewaves.js}) %>
   <script type="text/javascript">
     $(function () {
@@ -70,12 +89,12 @@
   </script>
 <% } %>
 
-<% if (theme.plugins.comment_typing) { %>
-  <%- js(theme.plugins.comment_typing) %>
+<% if (theme.plugins.comment_typing.enable) { %>
+  <%- js(theme.plugins.comment_typing.js) %>
 <% } %>
 
-<% if (config.highlight.enable != true) { %>
-  <% if (theme.plugins.highlightjs && theme.plugins.highlightjs.js) { %>
+<% if (theme.plugins.highlightjs.enable) { %>
+  <% if (theme.plugins.highlightjs.js) { %>
     <%- js(theme.plugins.highlightjs.js) %>
     <script>hljs.initHighlightingOnLoad();</script>
   <% } %>
@@ -85,7 +104,17 @@
   <%- partial('counter') %>
 <% } %>
 
+<% if (theme.plugins.darkmodejs.enable) { %>
+  <%- partial('darkmode') %>
+<% } %>
+
+<%- partial('../../_third-party/analytics/script') %>
+
+<%- partial('toc') %>
+
 <!-- more -->
 <% if (config.import && config.import.script) { %>
   <%- partial('import') %>
 <% } %>
+
+

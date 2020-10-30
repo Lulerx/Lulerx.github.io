@@ -1,4 +1,4 @@
-<div class="post post-v3 white-box reveal <%- theme.style.body.effect.join(' ') %>">
+<div class="post post-v3 white-box reveal <%- theme.custom_css.body.effect.join(' ') %>">
   <%
   let showPin = false;
   if (post.pin && (post.title || theme.article.preview.auto_title) && theme.article.preview.pin_icon) {
@@ -25,15 +25,7 @@
   <% if (post.headimg) { %>
     <div class='headimg-div'>
       <a class='headimg-a' href="<%- url_for(post.link || post.path) %>">
-        <% if (config.lazyload && config.lazyload.enable) { %>
-          <% if (config.lazyload.loadingImg) { %>
-            <div class='headimg lazyload placeholder' data-bg='<%- post.headimg %>'></div>
-          <% } else { %>
-            <div class='headimg lazyload' data-bg='<%- post.headimg %>'></div>
-          <% } %>
-        <% } else { %>
-          <div class='headimg' data-bg='<%- post.headimg %>'></div>
-        <% } %>
+        <img class='headimg' src='<%- post.headimg %>'/>
       </a>
     </div>
   <% } %>
@@ -46,7 +38,7 @@
     %>
     <h2 class="article-title" <%- pinTitle ? 'pin' : '' %>>
       <a href="<%- url_for(post.link || post.path) %>">
-        <%- (post.title || post.seo_title) ? (post.title || post.seo_title) : date(post.date, theme.meta.date.format) %>
+        <%- (post.title || post.seo_title) ? (post.title || post.seo_title) : date(post.date, theme.article.body.meta_library.date.format) %>
       </a>
     </h2>
   <% } %>
@@ -63,9 +55,19 @@
       <% } %>
     <% } %>
   </div>
-  <% if (showCat || showReadmore) { %>
+  <% if (showCat || showReadmore || theme.article.preview.author) { %>
     <div class='meta-v3' line_style='<%- theme.article.preview.line_style %>'>
       <div>
+        <% if (theme.article.preview.author) { %>
+          <%
+          let author = theme.article.body.meta_library.author;
+          let aid = post.author;
+          if (aid && site.data && site.data.author && (aid in site.data.author)) {
+            author = site.data.author[aid];
+          }
+          %>
+          <a class='avatar' href='<%- author.url %>'><img src='<%- author.avatar %>'></a>
+        <% } %>
         <time><%= date(post.date, config.date_format) %></time>
         <% if (post.categories && post.categories.length > 0) { %>
           <span class="dot"></span>
@@ -78,8 +80,8 @@
       </div>
       <% if (showReadmore) { %>
         <div>
-            <a class='readmore' href='<%- url_for(post.link || post.path) %>'>
-            <%- __('post.readmore') %>
+          <a class='readmore' href='<%- url_for(post.link || post.path) %>'>
+            <%- post.link ? __('post.readoriginal') : __('post.readmore') %>
           </a>
         </div>
       <% } %>

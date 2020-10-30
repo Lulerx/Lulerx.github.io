@@ -53,7 +53,7 @@
   margin: 0 -0.5 * $gap
   &,p,a
     font-size: $fontsize-code
-    color: $color-p
+    color: var(--color-p)
   b
     font-size: $fontsize-meta
   display: flex
@@ -127,14 +127,14 @@
         width: auto
       margin: $gap $gap * 0.5 $gap * 0.25 $gap * 0.5
       margin-top: "calc(-1.25 * %s - 32px)" % $gap
-      border: 2px solid $color-card
+      border: 2px solid var(--color-card)
       background: $color-inner
       line-height: 60px
       font-size: 28px
     &>i:first-child
       color: $color-inner
       background: $color-theme
-    background: $color-block
+    background: var(--color-block)
     border-radius: 4px
     p,b
       margin: .25em
@@ -157,7 +157,7 @@
         transform: scale(1.1) translateY(-8px)
         box-shadow: $boxshadow-float
       &>i:first-child
-        background:$color-hover
+        background: $color-hover
   &.circle a
     &>img:first-child, &>i:first-child
       border-radius: 32px

@@ -47,7 +47,7 @@ labels:
           您的疑问在 [Volantis](https://volantis.js.org) 和 [Hexo](https://hexo.io) 的官方文档有答案，如果找不到可以尝试进行搜索。
 
   # 采纳的建议
-  - name: adopted suggestion
+  - name: todo
     labeled:
       issue:
         body: |
@@ -127,4 +127,16 @@ labels:
 
           :wave: 您好，
           此 BUG 已经被修复，请更新您的 Volantis 版本。
+        action: close
+
+  # Not following issue template
+  - name: 🙁 Not following issue template
+    labeled:
+      issue:
+        body: |
+          :wave: Hello,
+          This issue is being automatically closed because it does not follow the issue template.
+
+          :wave: 您好，
+          因为您没有按照模板中的操作步骤进行自检，这个issue将被自动关闭。
         action: close
