@@ -1,7 +1,7 @@
 ---
 title: SpringMVC工作原理
 date: 2020-10-23
-categories: SpringMVC    #分类
+categories: [Java框架, SpringMVC]    #分类
 tags: SpringMVC        #标签
 toc: true  #是否启用内容索引
 top: false #是否置顶 true或者注释
