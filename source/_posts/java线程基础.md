@@ -1,5 +1,5 @@
 ---
-title: java线程学习笔记
+title: java线程基础学习笔记
 date: 2020-11-16
 categories: Java核心    #分类
 tags: java线程          #标签
@@ -476,10 +476,10 @@ public class BlockingQueueTest{
 
 ### 6.1 四种常见的线程池
 
-1.  Executors.newCacheThreadPool()：**可缓存线程池，先查看池中有没有以前建立的线程，如果有，就直接使用。如果没有，就建一个新的线程加入池中，缓存型池子通常用于执行一些生存期很短的异步型任务；**
+1.  **Executors.newCacheThreadPool()：**可缓存线程池，先查看池中有没有以前建立的线程，如果有，就直接使用。如果没有，就建一个新的线程加入池中，缓存型池子通常用于执行一些生存期很短的异步型任务；
 2.  **Executors.newFixedThreadPool(int n)：**创建一个可重用的、固定线程数的线程池；
-3.   **Executors.newSingleThreadExecutor()：**创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。
-4.   **Executors.newScheduledThreadPool(int corePoolSize)：**创建一个指定线程数的线程池，它可以在指定延迟时间间隔后再执行线程任务；
+3.  **Executors.newSingleThreadExecutor()：**创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。
+4.  **Executors.newScheduledThreadPool(int corePoolSize)：**创建一个指定线程数的线程池，它可以在指定延迟时间间隔后再执行线程任务；
 
 >   上面的**前三个方法返回一个 ExecutorService 对象**，该对象代表一个线程池，可以执行 Runnable 对象或 Callable 对象所代表的线程；而**第 4 个方法返回一个 ScheduledExecutorService 对象**，它是 ExecutorService 对象的子类，可以在指定延迟后执行线程任务。
 
